@@ -22,7 +22,8 @@ A simple Python GUI application to place different types of stock orders (Market
 - tkinter (usually included with Python)
 
 
-You can change the port according to the environment in which you want to use the panel. The default in the file is Paper trading 7497.
+## Port modification
+You can adjust the port based on the environment in which you intend to use the panel. By default, the script is configured for paper trading using port 7497.
 
 | Environment     | Default Port | Description        |
 |-----------------|--------------|--------------------|
