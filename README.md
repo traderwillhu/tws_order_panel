@@ -39,3 +39,7 @@ Fill in the ticker symbol, quantity, entry price, stop price, select Buy or Sell
 You can also make it as an executable.
 
 ![image](https://github.com/user-attachments/assets/87be72cf-0033-4bc7-bab5-8ad5926862d9)
+
+
+## Contact Me
+https://x.com/traderwillhu
