@@ -30,3 +30,14 @@ You can adjust the port based on the environment in which you intend to use the 
 | TWS Paper       | 7497         | Paper Trading      |
 | TWS Live        | 7496         | Live Trading       |
 | IB Gateway      | 4001         | Typically for automated live trading |
+
+
+## Usage
+Make sure your IB TWS or Gateway is running with API enabled and listening on the correct port (default 7497 for paper trading, 7496 for live).
+Run the script:
+python order_panel.py
+Fill in the ticker symbol, quantity, entry price, stop price, select Buy or Sell, choose the order type, and click Place Order.
+
+You can also make it as an executable.
+
+![image](https://github.com/user-attachments/assets/87be72cf-0033-4bc7-bab5-8ad5926862d9)
