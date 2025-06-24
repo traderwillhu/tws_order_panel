@@ -97,11 +97,26 @@ def submit_order():
                                 f"{action} {qty} shares of {ticker} at ${avg_fill_price:.2f}.\n"
                                 f"1 stop-loss order submitted at ${user_stop_price:.2f}.")
 
+        elif order_type == 'Market Order':
+            market_order = MarketOrder(action, qty)
+            trade = ib.placeOrder(contract, market_order)
+            while trade.isActive():
+                ib.sleep(1)
+
+            if trade.orderStatus.status != 'Filled':
+                messagebox.showerror("Order Error", "Market order was not filled.")
+                return
+
+            avg_fill_price = trade.orderStatus.avgFillPrice
+            messagebox.showinfo("Success",
+                                f"{action} {qty} shares of {ticker} at market price ${avg_fill_price:.2f} submitted.")
+
         else:
             messagebox.showerror("Error", "Unknown order type selected.")
 
     except Exception as e:
         messagebox.showerror("Error", str(e))
+
 
 # ========== GUI Setup ==========
 root = tk.Tk()
@@ -155,17 +170,35 @@ style.configure("TRadiobutton", font=("Segoe UI", 14))
 ttk.Radiobutton(action_frame, text="Buy", variable=action_var, value='BUY', style="TRadiobutton").pack(side="left", padx=15)
 ttk.Radiobutton(action_frame, text="Sell (Short)", variable=action_var, value='SELL', style="TRadiobutton").pack(side="left", padx=15)
 
-# Order Type
+# Order Type Dropdown
 order_type_var = tk.StringVar(value='Market + 3 Stops')
 ttk.Label(root, text="Order Type:").grid(row=6, column=0, sticky="e", pady=10, padx=(0,10))
 order_type_combo = ttk.Combobox(root, textvariable=order_type_var, state='readonly',
-                                values=['Market + 3 Stops', '3 Stops Only', 'Limit Order', 'Stop Order', 'Market + 1 Stop'],
-                                font=FONT_LARGE)
+    values=[
+        'Market + 3 Stops',
+        'Market + 1 Stop',
+        '3 Stops Only',
+        'Market Order',
+        'Limit Order',
+        'Stop Order'
+    ],
+    font=FONT_LARGE)
 order_type_combo.grid(row=6, column=1, sticky="ew", pady=10)
 
 # Submit Button
 submit_btn = ttk.Button(root, text="Place Order", command=submit_order)
 submit_btn.grid(row=7, column=0, columnspan=2, pady=40, ipadx=20, ipady=10)
+
+# Topmost Toggle
+topmost_var = tk.BooleanVar(value=True)
+topmost_check = ttk.Checkbutton(
+    root,
+    text="Always on Top",
+    variable=topmost_var,
+    command=lambda: root.attributes('-topmost', topmost_var.get()),
+    style="TCheckbutton"
+)
+topmost_check.grid(row=8, column=0, columnspan=2, pady=10)
 
 root.grid_columnconfigure(1, weight=1)
 root.mainloop()
