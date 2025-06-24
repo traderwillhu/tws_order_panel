@@ -56,7 +56,7 @@ Before live trading, you would better try it in paper trading account.
 
 ---
 
-# Exe. File
+## Exe. File
 If you are not familiar with Python or related tools, the easiest way to use this application is to simply download and run the pre-built .exe file.
 However, please be aware that .exe files are often flagged as high-risk by antivirus software or Windows SmartScreen. This is a normal reaction to unsigned executables distributed over the internet.
 You should only run the file if you trust the source and understand the risks.
@@ -71,7 +71,9 @@ https://x.com/traderwillhu
 
 ---
 
-# Buy me a coffee
+## Buy me a coffee
 ![image](https://github.com/user-attachments/assets/19d06efa-0b06-4195-843a-b9a6c10f8675)
+
 You can support by buying a coffee ☕️ here —
-buymeacoffee.com/willhu 
+[buymeacoffee.com/willhu 
+](https://buymeacoffee.com/willhu)
